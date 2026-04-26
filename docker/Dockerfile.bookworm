@@ -12,6 +12,12 @@ RUN apt update && apt install -y \
     libjpeg-dev libopenjp2-7-dev                 \
     libxml2-dev gettext jq
 
+# Install nodejs
+RUN apt install -y curl ca-certificates gnupg
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
+RUN apt install -y nodejs
+
+
 WORKDIR /app
 
 # ---------- build pdf2htmlEX ----------
@@ -38,4 +44,3 @@ RUN git clone https://github.com/pdf2htmlEX/pdf2htmlEX.git && \
 
 # ---------- default command ----------
 ENTRYPOINT ["pdf2htmlEX"]
-
